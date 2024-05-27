@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<h1>GAMES LIBRARY</h1>
+
+<div class="gamesSaved">
+    <ul th:each="game: ${games}">
+        <li class="gameSavedStructure">
+            <form class ="gameForm" th:method="delete" th:action="@{/games/{id}(id=${game.id})}">
+                <h3 th:text="${game.title}"></h3>
+                <input type="hidden" name="_method" value="DELETE"/>
+                <h3 th:text="${game.genre.name}"></h3>
+                <h3 th:text="${game.studio}"></h3>
+                <button class="delete" type="submit">X</button>
+            </form>
+        </li>
+    </ul>
+</div>
+
+<div class = "titleForm">
+    <form action="/games" method="post">
+        <input class= "inputTitle" type="text" name="title" required placeholder="Game Title"/>
+        <select class= "inputGenre" name="genreId">
+            <option th:each="genre: ${genres}" th:text="${genre.name}" th:value="${genre.id}"></option>
+        </select>
+        <input class= "inputStudio "type="text" name="studio" required placeholder="Studio Name"/>
+        <button class="send" type="submit">Send</button>
+    </form>
+</div>
+</body>
+</html>

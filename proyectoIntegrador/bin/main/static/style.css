@@ -1,0 +1,12 @@
+h1{
+    align-content:center;
+    display:flex;
+    justify-content: center;
+}
+.gameSavedStructure{
+    align-content: center;
+    justify-content: center ;
+}
+body{
+    background-color: red;
+}
